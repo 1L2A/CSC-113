@@ -2,7 +2,7 @@ package project_csc;
 
 public class Care extends Products {
 	
-	// اخر تحديث
+	// ا لتخر تحديث
 	private String Brand;
 
 	public Care(double  price  , String productName , int quan ,  String Brand) {
