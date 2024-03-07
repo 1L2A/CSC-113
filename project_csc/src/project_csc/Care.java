@@ -1,13 +1,12 @@
 package project_csc;
 
-public class Care extends Products {
-	
-	// ا لتخر تحديث
+public class Care extends Products  {
+	//حديث
 	private String Brand;
 
-	public Care(double  price  , String productName , int quan ,  String Brand) {
+	public Care(double  price  , String productName , int quant ,  String Brand) {
 
-		super (price , productName , quan );
+		super (price , productName , quant );
 		
 		this.Brand=Brand;
 
@@ -17,7 +16,7 @@ public class Care extends Products {
 	public Care (Care c) {
 		
 		
-		super (c.price , c.productName , c.quan  );
+		super (c.price , c.productName , c.quant );
 		
 		Brand=c.Brand;
 		
@@ -33,36 +32,36 @@ public class Care extends Products {
 		
 	}
 	
-	public double CalculatePrice() {
+	public double calculatePrice() {
 		double p=0;
 		switch (productName) {
 		
 		case "Shampo" :
 			
-			p=15*quan;
+			p=15*quant;
 			
 			break;
 			
 			
         case "Hand Cream" :
 			
-			p=20*quan;
+			p=20*quant;
 			break;
 			
 			
         case "Body Wash ":
 			
-			p=12*quan;
+			p=12*quant;
 			break;
 			
         case "Body Lotion":
 			
-			p=21.25*quan;
+			p=21.25*quant;
 			break;
 		
 		
         case "Hair Cream" :
-		p=19*quan;
+		p=19*quant;
 		
 		
 		break;
@@ -137,6 +136,8 @@ switch (Brand) {
 	public void setBrand(String brand) {
 		Brand = brand;
 	}
+
+
 	
 	
 	
