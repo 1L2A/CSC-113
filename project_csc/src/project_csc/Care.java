@@ -1,7 +1,7 @@
 package project_csc;
 
-public class Care extends Products  {
-	//حديث
+public class Care extends Product  {
+	
 	private String Brand;
 
 	public Care(double  price  , String productName , int quant ,  String Brand) {
@@ -10,122 +10,29 @@ public class Care extends Products  {
 		
 		this.Brand=Brand;
 
-		// TODO Auto-generated constructor stub
 	}
 	
+	
 	public Care (Care c) {
-		
 		
 		super (c.price , c.productName , c.quant );
 		
 		Brand=c.Brand;
-		
-		
 		
 	}
 	
 	
 	public String toString () {
 		
-	return super.toString()+"Brand: "+Brand;
+	return super.toString()+"  -  Brand: "+Brand;
 		
 		
 	}
-	
+	//Calculate and return the Price based on quantity.
 	public double calculatePrice() {
-		double p=0;
-		switch (productName) {
-		
-		case "Shampo" :
-			
-			p=15*quant;
-			
-			break;
-			
-			
-        case "Hand Cream" :
-			
-			p=20*quant;
-			break;
-			
-			
-        case "Body Wash ":
-			
-			p=12*quant;
-			break;
-			
-        case "Body Lotion":
-			
-			p=21.25*quant;
-			break;
-		
-		
-        case "Hair Cream" :
-		p=19*quant;
-		
-		
-		break;
-		
-		
-		
-		}
-		
-		
-switch (Brand) {
-		
-		case "Dove" :
-			
-			p+=6;
-			
-			break;
-			
-			
-        case "Pantene" :
-			
-			p+=4;
-			break;
-			
-			
-        case "Elvive ":
-			
-			p+=10;
-			break;
-			
-        case "Signal":
-			
-			p+=2;
-			break;
-		
-		
-        case "Lux" :
-		p+=5;
-		
-		
-		break;
-		
-		
-        case "Eucerin" : 
-		
-        	p+=90;
-        	break;
-        	
-        case "Vasline":
-        	p+=20;
-        	break;
-        	
-        case "Cetaphile":
-        	p+=100;
-        	break;
-        	
-		
-		
-		}
-		
-		
-		
-		
-		return p;
-		
+		double total = price*quant;
+
+	return 	total;
 		
 	}
 
