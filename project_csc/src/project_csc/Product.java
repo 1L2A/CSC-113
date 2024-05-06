@@ -74,3 +74,17 @@ public abstract class Product {
 	
 
 }
+
+package project_csc;
+
+public class NegativQuantity extends RuntimeException {
+
+	public NegativQuantity() {
+		super("Qauntity must be positive number");
+	}
+	
+	public NegativQuantity(String str) {
+		super(str);
+	}
+
+}
