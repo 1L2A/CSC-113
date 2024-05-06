@@ -10,16 +10,11 @@ public abstract class Product {
 	
 	
 
-	public Product ( double price , String productName ,int quant ) throws NegativQuantity{
+	public Product ( double price , String productName ,int quant ) {
 		
 		this.price = price;  
 		this.productName = productName;
-		if (quant>0)
 		this.quant= quant; 
-		else
-		throw new NegativQuantity();
-		
-		
 	}
 	
 	public Product(Product p) {
@@ -72,19 +67,5 @@ public abstract class Product {
 	
 	
 	
-
-}
-
-package project_csc;
-
-public class NegativQuantity extends RuntimeException {
-
-	public NegativQuantity() {
-		super("Qauntity must be positive number");
-	}
-	
-	public NegativQuantity(String str) {
-		super(str);
-	}
 
 }
