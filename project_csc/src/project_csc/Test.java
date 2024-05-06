@@ -14,7 +14,7 @@ public class Test {
 		double [] PriceFood = {4.95, 3.95,3.95,4.95, 4.95,3.95, 99.95,15,18.85,6,4,2.7,19.25,1.75,1};
 		double [] PriceCare = {14,28,12,13,9.13,28.24,10,11.80,40,54.27};
 		
-		market inv = new market (100);// giving Operational value depends on the user how use the system. 
+		market inv = new market (100);// giving a Operational value depends on the user how use the system. 
 	System.out.println("** Welcome to our System **");
 	int select ;
 	
