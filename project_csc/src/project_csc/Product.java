@@ -10,11 +10,16 @@ public abstract class Product {
 	
 	
 
-	public Product ( double price , String productName ,int quant ) {
+	public Product ( double price , String productName ,int quant ) throws NegativQuantity{
 		
 		this.price = price;  
 		this.productName = productName;
+		if (quant>0)
 		this.quant= quant; 
+		else
+		throw new NegativQuantity();
+		
+		
 	}
 	
 	public Product(Product p) {
