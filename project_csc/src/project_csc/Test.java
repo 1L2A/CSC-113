@@ -1,12 +1,17 @@
 package project_csc;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-public class Test {
+import javax.swing.JOptionPane;
 
+public class Test {
+  static TestGui mainFrame = new TestGui();
+    
 	public static void main(String[] args) {
+            mainFrame.setVisible(true);
+            
 		
 		Scanner input = new Scanner (System.in);
-
+/*
 		// List of our products in the market and prices.
 
 		String [] Food = {"Red Onions","Cucumber","Potatoes","Carrot","Red Apples","Oranges","Alshalan Rice","15 Eggs","Entaj Chicken","Herfy Sliced Bread white","Almarai milk 1 liter","Pepsi 360 ml","XXL Pringles Original","KitKat two fingers","Nova Water 550 ml"};
@@ -290,8 +295,8 @@ public class Test {
 					if ( inv.searchForInvoice(number) != -1)
 						inv.getAllinvoices()[inv.searchForInvoice(number)].printBill();
 					else 
-						System.out.println(	"There is no invoice for the entered phone number");	
-				
+						System.out.println(	"There is no invoice for the entered phone number");
+                         
 					break;
 					
 				case 3:
@@ -321,7 +326,7 @@ public class Test {
 		
 				
 				
-				
+		*/		
 	} // end main
 
 
