@@ -10,10 +10,8 @@ public class Food extends Product {
 		public Food(double  price  , String productName , int quant ,  double Kgrams ) {
 			
 		super(price , productName , quant);	
-		if(Kgrams>0)
 		Kilogram = Kgrams;
-		else
-		throw new NegativQuantity();
+		
 		}
 		
 		
