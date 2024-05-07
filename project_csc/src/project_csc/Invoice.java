@@ -1,8 +1,9 @@
 package project_csc;
 
 import java.util.Scanner;
+import java.io.*;
 
-public class Invoice {
+public class Invoice implements Serializable {
 	Scanner in = new Scanner(System.in);
 	
 	
@@ -216,4 +217,37 @@ public class Invoice {
 	public String getPhone() {
 		return custPhone;
 }
+        
+     public boolean saveInvoice(String fName){
+     
+         try{
+     File f = new File (fName);
+     FileOutputStream out = new FileOutputStream (f);
+     ObjectOutputStream fiObj= new ObjectOutputStream(out);
+     
+     fiObj.writeInt(numOfProd);
+     fiObj.writeObject(custName);
+     fiObj.writeObject(custPhone);
+     
+     for(int i =0 ; i<numOfProd ; i++)
+         fiObj.writeObject(productList[i]);
+     
+     fiObj.close();
+         }
+         
+         catch(IOException e ){
+         System.out.println("There is a EXCe");
+         }
+
+     return true;
+   
+     }   
+      
+        
+        
+        
+        
+        
+        
+        
 }//end class
