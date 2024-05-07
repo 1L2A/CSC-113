@@ -14,10 +14,8 @@ public abstract class Product {
 		
 		this.price = price;  
 		this.productName = productName;
-		if(quant>0)
 		this.quant= quant; 
-		else 
-		throw new NegativQuantity();
+	
 	}
 	
 	public Product(Product p) {
