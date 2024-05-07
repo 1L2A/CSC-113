@@ -241,13 +241,43 @@ public class Invoice implements Serializable {
 
      return true;
    
-     }   
+     }  
+     
+     
+     public void uploadInvoice(String fName) {
       
+    	 try {
+    		 File f = new File (fName);
+    		 FileInputStream in = new FileInputStream (f);
+    		 ObjectInputStream fobj= new ObjectInputStream(in);
+    		 
+    		 
+    		 int size = fobj.readInt();
+    		 String custName = (String) fobj.readObject();
+    		 String custPhone = (String) fobj.readObject();
+    		
+    		 
+    		 for (int i =0 ; i<size ; i++) {
+    			 
+    			Product obj = (Product ) fobj.readObject() ;
+    			this.addProduct(obj);
+    			 
+    		 }
+    		 
+    		 fobj.close();
+    		 
+    	 }catch(ClassNotFoundException e) {
+    		  System.out.println("There is a EXCe"); 
+    		 
+    	 }catch (IOException e ) {
+    		 
+    		  System.out.println("There is a EXCe");  
+    	 }
         
         
         
         
-        
+     }      
         
         
 }//end class
