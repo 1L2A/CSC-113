@@ -1,4 +1,5 @@
 package project_csc;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Test {
 
@@ -16,20 +17,36 @@ public class Test {
 		
 		market inv = new market (100);// giving a Operational value depends on the user how use the system. 
 	System.out.println("** Welcome to our System **");
-	int select ;
+	int select=1 ;
 	
 	System.out.println("\nfor the FIRST time you MUST make new Invoice to be able to do the rest");
 	System.out.println("*note that you can only add "+inv.getAllinvoices().length +" Invoices to the System");
 
 
 	do { // do while for invoice 
+		
+		if(select<1 || select>5) 
+			System.out.println("\nPlease enter vaild number from the list");
+		
+		boolean enter=true;
+		while(enter) {
+		try {
 		System.out.println("\n\nWhat do you want to perform ? Choose the NUMBER from the list:");
 		System.out.println("1- Make new Invoice");//for each time ,if that one be chosen then, Invoice obj will be created and the Market System will Start for the Current customer,also the list Of products will appear and the current customer can do a list of commands.  
 		System.out.println("2- Search for Invoice");
 		System.out.println("3- Delete Invoice ");
 		System.out.println("4- Display All Invoices Information");
 		System.out.println("5- End the program ");
+		
+		
 		select= input.nextInt();
+		enter=false;
+		}
+		catch(InputMismatchException i) {
+			System.out.println("\n"+i.toString()+"   "+"The type of your input is wrong");
+			 input.next();
+		}
+		}
 	
 	
 				switch (select) { // switch for cases for invoice
@@ -77,11 +94,17 @@ public class Test {
 								}							
 								
 						
-						int choice ;
+						int choice=1 ;
 						System.out.println("*note that you can add only 100 products to your Basket");
 
 						do {   // choice
+							if(choice<1 || choice>7) 
+								System.out.println("\nPlease enter vaild number from the list");
 							
+
+							boolean enter2=true;
+							while(enter2) {
+							try {
 							System.out.println("\n\nWhat do you want to perform ? Choose the NUMBER from the list:");
 							System.out.println("1- Add a product to my Basket");
 							System.out.println("2- Remove a whole product from my Basket");
@@ -93,6 +116,13 @@ public class Test {
 							
 							
 							choice= input.nextInt();
+							enter2=false;
+							}
+							catch(InputMismatchException e) {
+								System.out.println("\n"+e.toString()+"   "+"The type of your input is wrong");
+								 input.next();
+							}
+							}
 							
 							switch(choice) {
 							
@@ -108,11 +138,17 @@ public class Test {
 								
 								for(int r=0 ; r<6 ; r++) {  // loop from 0 to 6 because we have in list 6 product have kg.
 									if(Food[r].equalsIgnoreCase(pName)) {
+										boolean enter1=true;
+										while(enter1) {
+										try {
 										System.out.println("Please Enter the Kilograms: ");
 										pGrams=input.nextDouble();
-										while(pGrams<=0){
-											System.out.println("Sorry, your Kilograms incorrect, re-Enter the Kilograms: ");
-											pGrams=input.nextInt();}
+										if(pGrams<=0)
+											throw new NegativQuantity();
+										enter1=false;
+										}
+										catch(NegativQuantity n) {System.out.println(n.toString());}
+									}
 										cus1.addProduct(new Food (PriceFood[r], Food[r], 1,pGrams));
 										check++;
 												break;
@@ -120,11 +156,18 @@ public class Test {
 								
 								for(int r=6 ; r<Food.length ; r++) { // loop start from 6 because that display products without kg.
 									if(Food[r].equalsIgnoreCase(pName)) {
+										boolean enter1=true;
+										while(enter1) {
+										try {
 										System.out.println("Please Enter the Quantity: ");
 										pQuant=input.nextInt();
-										while(pQuant<=0){
-											System.out.println("Sorry, your Quantity incorrect, re-Enter the Quantity: ");
-											pQuant=input.nextInt();}
+										if(pQuant<=0)
+											throw new NegativQuantity();
+										enter1=false;
+										}
+										catch(NegativQuantity n) {System.out.println(n.toString());}
+										}
+
 										cus1.addProduct(new Food (PriceFood[r], Food[r], pQuant,0));
 										check++;
 												break;
@@ -132,11 +175,19 @@ public class Test {
 								
 								for(int r=0 ; r<Care.length ; r++) {
 									if(Care[r].equalsIgnoreCase(pName)) {
+										boolean enter1=true;
+										while(enter1) {
+										try {
 										System.out.println("Please Enter the Quantity: ");
 										pQuant=input.nextInt();
-										while(pQuant<=0){
-											System.out.println("Sorry, your Quantity incorrect, re-Enter the Quantity: ");
-											pQuant=input.nextInt();}
+										if(pQuant<=0)
+											throw new NegativQuantity();
+										enter1=false;
+										}
+										catch(NegativQuantity n) {System.out.println(n.toString());}
+										}
+
+										
 										cus1.addProduct(new Care (PriceCare[r], Care[r], pQuant,brand[r]));
 										check++;
 												break;
