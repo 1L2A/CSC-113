@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 import java.io.*;
 
 public class TestGui extends javax.swing.JFrame {
-    
+ 
+InvFrame fInv = new InvFrame();
 public static market Market = new market(100);
 public static Invoice customer= null;
 
@@ -253,6 +254,7 @@ if(Market.uploadMarket(textBox5.getText()))
     JOptionPane.showMessageDialog(null,"successfully uploaded");
 else
     textBox5.setText("");
+
     }                                        
 
     private void textBox5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
