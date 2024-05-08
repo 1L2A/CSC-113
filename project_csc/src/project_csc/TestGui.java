@@ -6,7 +6,6 @@ import java.io.*;
 public class TestGui extends javax.swing.JFrame {
     
 public static market Market = new market(100);
-public static InvFrame fInv = new InvFrame();
 public static Invoice customer= null;
 
  
@@ -31,6 +30,7 @@ public static Invoice customer= null;
         textBox2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        textBox5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Invoices Management System");
@@ -96,6 +96,19 @@ public static Invoice customer= null;
 
         jButton6.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton6.setText("Upload The Market");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        textBox5.setFont(new java.awt.Font("Noteworthy", 0, 14)); // NOI18N
+        textBox5.setText("Phone Number");
+        textBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textBox5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,6 +154,10 @@ public static Invoice customer= null;
                                     .addComponent(textBox2))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(textBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(276, 276, 276))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +181,9 @@ public static Invoice customer= null;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5))
-                .addGap(107, 107, 107))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,8 +207,8 @@ else if(textBox2.getText().length()!= 10){ JOptionPane.showMessageDialog(null," 
 else {
     try{
      Integer.parseInt(textBox2.getText());
+     customer = new Invoice(textBox1.getText(),textBox2.getText());
      fInv.setVisible(true);
-      if(Market.addInvoice(fInv.inv)) JOptionPane.showMessageDialog(null,"Added");
     }
     
     catch (NumberFormatException e ){
@@ -226,6 +245,18 @@ else {
         textBox3.setText("");
     }}
 
+    }                                        
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+
+if(Market.uploadMarket(textBox5.getText()))
+    JOptionPane.showMessageDialog(null,"successfully uploaded");
+else
+    textBox5.setText("");
+    }                                        
+
+    private void textBox5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
     }                                        
 
     /**
@@ -276,5 +307,6 @@ else {
     public javax.swing.JTextField textBox2;
     private javax.swing.JTextField textBox3;
     private javax.swing.JTextField textBox4;
+    private javax.swing.JTextField textBox5;
     // End of variables declaration                   
 }
