@@ -1,6 +1,10 @@
 package project_csc;
 
 import java.util.Scanner;
+import java.io.*;
+import javax.swing.JOptionPane;
+
+
 
 public class market {
 	Scanner in = new Scanner(System.in);
@@ -17,15 +21,13 @@ public class market {
 	/* inserts and received Invoice to the first empty location in Allinvoices,
 	   the method print a successful message if the Invoice add successfully,
 	    or unsuccessful message otherwise.*/
-	public void addInvoice(Invoice invoice) {
+	public boolean addInvoice(Invoice invoice) {
 		
 		if(numOfInvoice<Allinvoices.length) {
 			Allinvoices[numOfInvoice++]=new Invoice(invoice);
-			System.out.println("\nThe Invoice added successfully ");
-			return;
+			return true;
 			}
-		System.out.println("Sorry,the list of Invoices full, you can't add more Invoice,");
-		
+return false;		
 	}
 	
 	
@@ -43,33 +45,22 @@ public class market {
 	 the last element in the array), and validate whether the entered  phone number is 
 	 found or not ,if not the user will be able to choose
 	 either re-enter the phone number or not remove. */
-	public void deleteInvoice(String phone) {
+	public boolean deleteInvoice(String phone) {
 		
 
 		if(searchForInvoice(phone)>=0)
 		{
 			if(searchForInvoice(phone)==(numOfInvoice-1)) {
 				Allinvoices[--numOfInvoice]=null;
-			System.out.println("Removed successfully ");}
-			
+                         return true ;}			
 			else {
 				Allinvoices[searchForInvoice(phone)]=Allinvoices[numOfInvoice-1];
 			Allinvoices[--numOfInvoice]=null;
-			System.out.println("Removed successfully ");}
+			return true;}
 		}
-		else { //else2
-			System.out.println("Can't find the phone number ,\nDo you want to Re-remove the invoice? Yes or No");
-		String answer = in.next();
-		if(answer.equalsIgnoreCase("yes")) {
-			in.nextLine();
-			System.out.println("Enter the phone number that you want to remove"); 
-			phone=in.next();
-			deleteInvoice(phone);
-			return;}
-		
-		else {System.out.println("Fine , the invoice Still in the store"); 
-		return;}
-		}//end else2
+		else  //else2
+		return false;			
+
 	}//end method
 	
 	//returns a string containing all information about store. 
@@ -91,7 +82,58 @@ public class market {
 		return Allinvoices;
 	}
 
-	
+	public boolean saveMarket(String fName) {
+     
+        try{ 
+     File f = new File (fName);
+     FileOutputStream out = new FileOutputStream (f);
+     ObjectOutputStream fiObj= new ObjectOutputStream(out);
+     
+     fiObj.writeInt(numOfInvoice);
+     
+     for(int i =0 ; i<numOfInvoice ; i++)
+         fiObj.writeObject(Allinvoices[i]);
+     
+     fiObj.close();
+        }
+        catch (IOException e ) {
+             JOptionPane.showMessageDialog(null,"Somthing wrong, try agin");
+             return false;
+    	 }
+     return true;
+   
+     }  
+     
+     
+     public boolean uploadMarket(String fName) {
+      
+    	 try {
+    		 File f = new File (fName);
+    		 FileInputStream in = new FileInputStream (f);
+    		 ObjectInputStream fobj= new ObjectInputStream(in);
+    		 
+    		 
+    		 int size = fobj.readInt();
+    
+    		 for (int i =0 ; i<size ; i++) {
+    			 
+    			Invoice obj = (Invoice ) fobj.readObject() ;
+    			this.addInvoice(obj); 
+    		 }
+    		 
+    		 fobj.close();
+    		 
+    	 }catch(ClassNotFoundException e) {
+             JOptionPane.showMessageDialog(null,"Somthing wrong, try agin");
+             return false;
+    		 
+    	 }catch (IOException e ) {
+    		 JOptionPane.showMessageDialog(null,"Somthing wrong, try agin");
+             return false;  
+    	 } 
+        
+         return true;
+     }      
 	
 	
 	
