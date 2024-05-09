@@ -5,10 +5,9 @@ import java.io.*;
 
 public class TestGui extends javax.swing.JFrame {
  
-InvFrame fInv = new InvFrame();
+public static InvFrame fInv = new InvFrame();
 public static market Market = new market(100);
-public static Invoice customer= null;
-
+public static Invoice customer = null ;
  
     public TestGui() {
         initComponents();
@@ -68,6 +67,11 @@ public static Invoice customer= null;
         jButton3.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton3.setText("Search for Invoice");
         jButton3.setPreferredSize(new java.awt.Dimension(192, 29));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton1.setText("Make new Invoice");
@@ -98,6 +102,11 @@ public static Invoice customer= null;
 
         jButton4.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton4.setText("Display All Invoices Information");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton6.setText("Upload The Market");
@@ -182,7 +191,7 @@ public static Invoice customer= null;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(textBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,8 +356,25 @@ else
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+if (Market == null ){
+         JOptionPane.showMessageDialog(null,"no market was found");  
+           }
+       
+      if(Market.saveMarket(textBox6.getText()))
+      JOptionPane.showMessageDialog(null,"successfully saved");
+     else
+     textBox6.setText("the file can't save");    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+String mobi = textBox4.getText();
+        if (Market.searchForInvoice(mobi)>=0)
+            JOptionPane.showMessageDialog(null,"The invoice was founde");
+       else
+             JOptionPane.showMessageDialog(null,"There is no invoice for the entered phone number");    }                                        
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+DisplayInvForm dis = new DisplayInvForm();
+        dis.setVisible(true);    }                                        
 
     /**
      * @param args the command line arguments
