@@ -121,71 +121,72 @@ public class Invoice implements Serializable {
 	
 	
 	/*print the bill of Food objects in productList.*/
-	public void printBillF() {
+	public String printBillF() {
 		
 		
-		
+		String str1=("\n______________________________")+"\nprint Bill Food";
 		int numOfFood=0;
 		for(int i=0 ; i<numOfProd ; i++ )
 			if(productList[i] instanceof Food  )
 				numOfFood++;
 		
 		if(numOfFood == 0) {
-			System.out.println("\nThere is NO Food product");
-		return;}
+			str1=str1+("\nThere is NO Food product");
+		return str1;}
 		
-		System.out.println("\n______________________________");
+		str1=("\n______________________________");
 
-		System.out.println("The Food Products Bill: ");
+		str1=str1+("\nThe Food Products Bill: ");
 		
 		double sumOfFood=0;
 		for(int i=0 ; i<numOfProd ; i++ )
 			if(productList[i] instanceof Food  ) {
-				System.out.println(productList[i].toString() );
+				str1= str1+"\n"+(productList[i].toString())+"\n";
 				
 				sumOfFood+=productList[i].calculatePrice();
 			}
-		System.out.println("\nThe Total Food Products price: "+sumOfFood+" SAR");
+		str1=str1+"\n"+("\nThe Total Food Products price: "+sumOfFood+" SAR");
+                return str1;
 	}//end method
 	
 	/*print the bill of Care objects in productList.*/
-	public void printBillC() {
+	public String printBillC() {
 		
-		
+		String str2=("\n______________________________")+"\nprint Bill Care";
 		int numOfCare =0 ;
 		for(int i=0 ; i<numOfProd ; i++ )
 			if(productList[i] instanceof Care )
 				numOfCare++;
 		
 		if(numOfCare == 0) {
-			System.out.println("\nThere is NO Care products");
-		return;}
+			str2=str2+("\nThere is NO Care products");
+		return str2;}
 		
-		System.out.println("\n______________________________");
+		str2=("\n______________________________");
 
-		System.out.println("The Care Products Bill: ");
+		str2=str2+("\nThe Care Products Bill: ");
 		double sumOfCare=0;
 		
 		for(int i=0 ; i<numOfProd ; i++ )
 			if(productList[i] instanceof Care  ) {
-				System.out.println(productList[i].toString());
+				str2= str2+"\n"+(productList[i].toString()+"\n");
 				 sumOfCare+=productList[i].calculatePrice();
 			}
-		System.out.println("\nThe Total Care Products price: "+ sumOfCare+" SAR");
-		
+		str2=str2+"\n"+("\nThe Total Care Products price: "+ sumOfCare+" SAR");
+		return str2;
 	}
 	
 	/*print the bill include the bill of Food and Care with 
 	 the total price of Food and Care in productList .*/
-	public void printBill() {
+	public String printBill() {
 		
-		String str = "\n______________________________" ;
-		str  += "\nThe Information of The Customer: ";
-		str+= "\nName: " + custName + "  -  Phone: " + custPhone ;
-		System.out.println(str);
+		String str3 = "\n______________________________" ;
+		str3 =str3+ "\nThe Information of The Customer: ";
+		str3=str3+"\nName: " + custName + "  -  Phone: " + custPhone ;
 		
-		printBillF();
-		printBillC();
+		
+		str3=str3+ "\n\n\n"+printBillF();
+		str3=str3+ "\n\n\n"+printBillC();
 		
 		double sumOfProducts=0;
 		
@@ -193,8 +194,9 @@ public class Invoice implements Serializable {
 		sumOfProducts+=productList[i].calculatePrice();
 			
 		
-		System.out.println("\nThe Total Products price: "+ sumOfProducts+" SAR");
+		str3=str3+("\n______________________________")+("\n\nThe Total Products price: "+ sumOfProducts+" SAR");
 		
+                return str3;
 	}
 	
 	/*to calculate and return the sum of all product prices in productList.*/
