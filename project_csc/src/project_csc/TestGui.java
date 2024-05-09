@@ -50,6 +50,11 @@ public static Invoice customer= null;
 
         jButton5.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton5.setText("Save The Market");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Noteworthy", 0, 18)); // NOI18N
         jButton2.setText("Delete Invoic");
@@ -314,12 +319,15 @@ else {
     }                                        
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+if(textBox5.getText().equalsIgnoreCase(""))//validate the user input
+    JOptionPane.showMessageDialog(null,"You must Enter the file name");
+else{
 
 if(Market.uploadMarket(textBox5.getText()))
     JOptionPane.showMessageDialog(null,"successfully uploaded");
 else
     textBox5.setText("");
-
+}
     }                                        
 
     private void textBox5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -335,6 +343,10 @@ else
     }                                        
 
     private void textBox4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
